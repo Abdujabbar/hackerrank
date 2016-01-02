@@ -11,4 +11,4 @@ for i in range(n):
         if i == j:
             _sum += matrix_[i][i] - matrix_[i][n - j - 1]
 
-print(abs(_sum))D
+print(abs(_sum))
