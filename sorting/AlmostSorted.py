@@ -10,37 +10,36 @@ def swap(arr, i, j):
 
 
 def reverse(arr, i, j):
-    temp = arr[i:j]
-    temp = temp[::-1]
-    for x in range(len(temp)):
-        arr[x + i] = temp[x]
+    t = arr[i:j + 1]
+    arr[i:j+1] = reversed(t)
 
 
 n = int(input())
 a = [int(x) for x in input().split()]
-_a = a.copy()
-_swap = 0
-_reverse = 0
-x = y = 0
 
-i = 1
+if is_sorted(a):
+    print("yes")
+else:
+    sorted_a = sorted(a)
 
+    i = 0
+    j = len(a) - 1
+    while i < j - 1 and a[i] < a[i + 1]:
+        i += 1
 
-if _swap > 0:
-    if _swap == 1:
+    while j > 0 and a[j] > a[j - 1]:
+        j -= 1
+
+    _a = a.copy()
+    swap(_a, i, j)
+    if is_sorted(_a):
         print("yes")
-        print("swap " + str(x + 1) + " " + str(y + 1))
+        print("swap " + str(i + 1) + " " + str(j + 1))
     else:
-        for i in range(1, len(a)):
-            if a[i] < a[i - 1]:
-                _point = i
-                while _point < len(a) and a[_point] < a[_point - 1]:
-                    _point += 1
-                a[i - 1:_point] = reversed(a[i - 1:_point])
-                if is_sorted(a):
-                    print("yes")
-                    print("reverse" + " " + str(i) + " " + str(_point))
-                    _reverse += 1
-                break
-        if _reverse == 0:
+        reverse(a, i, j)
+        if is_sorted(a):
+            print("yes")
+            print("reverse " + str(i + 1) + " " + str(j + 1))
+        else:
             print("no")
+
