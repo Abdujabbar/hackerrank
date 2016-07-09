@@ -1,19 +1,19 @@
 
-
 t = int(input())
 
-n, m, s = [int(x) for x in input().split()]
+for _ in range(t):
+    n, m, s = [int(x) for x in input().split()]
 
+    if m == 1:
+        print(s)
+    else:
+        if m > n:
+            d = m // n
+            m -= d * n
 
-if m == 1:
-    print(s)
-else:
-    if m > n:
-        d = m // n
-        m -= d * n
+        s += m - 1
 
-    s += m
+        if s > n:
+            s -= n
+        print(s)
 
-    if s - 1 > n:
-        s -= n
-    print(s - 1)
