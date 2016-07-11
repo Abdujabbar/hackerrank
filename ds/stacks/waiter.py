@@ -32,22 +32,21 @@ while counter < q:
         stack.append(t)
         counter += 1
 primes = []
-while stack:
-    v = stack.pop(0)
+for v in stack:
     non_primes = []
 
     while pile:
         x = pile.pop()
         if x % v == 0:
-            primes.append(x)
+            primes.insert(x)
         else:
-            non_primes.append(x)
-
-    while primes:
-        print(primes.pop(0))
+            non_primes.insert(x)
 
     pile = non_primes
+    while primes:
+        print(primes.pop())
+
 
 while non_primes:
-    print(non_primes.pop(0))
+    print(non_primes.pop())
 
