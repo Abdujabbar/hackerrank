@@ -3,31 +3,19 @@ n = int(input())
 
 ax = [int(x) for x in input().split()]
 ay = [int(y) for y in input().split()]
-
+sumx = sum(ax)
+sumy = sum(ay)
 c = 0
-i = 0
+if sumx == sumy:
+    ax = sorted(ax)
+    ay = sorted(ay)
+    max_diff = 0
+    if ay[0] > ax[0]:
+        max_diff += ay[0] - ax[0]
+    for x in range(1, len(ax)):
+        if ay[x] > ax[x]:
+            max_diff += ay[x] - ax[x]
+    print(max_diff)
 
-while i < len(ax) - 1:
-    diff = ax[i] - ay[i]
-    j = i + 1
-    while j < len(ax):
-        rdiff = ay[j] - ax[j]
-        if rdiff == diff and diff != 0:
-            ax[i] -= diff
-            ax[j] += diff
-            c += diff
-            break
-        j += 1
-    i += 1
-
-
-found = True
-for i in range(len(ax)):
-    if ax[i] != ay[i]:
-        found = False
-
-if found:
-    print(c)
 else:
     print(-1)
-
