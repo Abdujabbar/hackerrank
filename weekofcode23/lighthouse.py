@@ -1,3 +1,6 @@
+import math
+
+
 def validate(matrix, i, j, dist):
     global n
     top = i - dist
@@ -10,22 +13,33 @@ def validate(matrix, i, j, dist):
         return False
 
     if matrix[top][j] == matrix[bottom][j] == matrix[i][left] == matrix[i][right] == '.':
+        result = True
+        for x in range(top, bottom):
+            for y in range(left, right):
+                if matrix[x][y] == '.':
+                    _dist = math.sqrt((x - i) * (x - i) + (y - j) * (y - j))
+                    if not _dist <= dist:
+                        return False
 
-        topside = i
-        bottomside = i
-        cc = 1
-        while topside >= top and bottomside <= bottom:
-            topside -= 1
-            bottomside += 1
-            leftside = left + cc
-            rightside = right - cc
-            while leftside <= rightside:
-                if matrix[topside][rightside] != '.' or matrix[topside][leftside] != '.' or\
-                        matrix[bottomside][rightside] != '.' or matrix[bottomside][leftside] != '.':
-                    return False
-                leftside += 1
-                rightside -= 1
-            cc += 1
+        # while topside >= top and bottomside <= bottom:
+        #     topside -= 1
+        #     bottomside += 1
+        #     leftside = left + cc
+        #     rightside = right - cc
+        #     while leftside <= rightside:
+        #         if matrix[topside][rightside] != '.' or matrix[topside][leftside] != '.' or\
+        #                 matrix[bottomside][rightside] != '.' or matrix[bottomside][leftside] != '.':
+        #             return False
+        #
+        #         dist1 = math.sqrt((topside - i) * (topside - i) + (rightside - j) * (rightside - j))
+        #         dist2 = math.sqrt((topside - i) * (topside - i) + (leftside - j) * (leftside - j))
+        #         dist3 = math.sqrt((bottomside - i) * (bottomside - i) + (rightside - j) * (rightside - j))
+        #         dist4 = math.sqrt((bottomside - i) * (bottomside - i) + (leftside - j) * (leftside - j))
+        #         if dist1 > dist or dist2 > dist or dist3 > dist or dist4 > dist:
+        #             return False
+        #         leftside += 1
+        #         rightside -= 1
+        #     cc += 1
         return True
 
     return False
@@ -47,6 +61,8 @@ for _ in range(n):
     Matrix[_] = list(input())
 _max = 0
 
+
+# print(validate(Matrix, 2, 2, 1))
 
 for x in range(n):
     for y in range(n):
